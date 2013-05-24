@@ -12,10 +12,10 @@ float random(float LO, float HI);
 int random_int(int LO, int HI);
 
 struct Cell {
-  bool exists;
+  bool tiled;
   bool blocked;
   Cell();
-  Cell(bool _exists, bool _blocked);
+  Cell(bool _tiled, bool _blocked);
 };
 
 struct Arena {
@@ -24,7 +24,12 @@ struct Arena {
   Arena();
   Arena(int _width, int _height);
   Cell cell(int _x, int _y);
-  void set(int _x, int _y, bool _exists);
+  void set(int _x, int _y, bool _tiled);
+  bool cell_exists(int _x, int _y);
+  bool can_move(int _x, int _y);
+  int count_tiled();
+  int percent_tiled();
+  bool fully_tiled();
 };
 
 struct Object {
@@ -44,6 +49,7 @@ struct Player {
   int coins;
   Player();
   Player(int _x, int _y, int _facing_x, int _facing_y, bool _has_block);
+  void Facing(CARDINAL_DIRECTION _cardinal_direction);
 };
 
 struct Nest {
@@ -55,6 +61,7 @@ struct Nest {
 struct Foo {
   Object obj;
   int count_since_moved;
+  float distance_last_moved;
   Foo();
   Foo(int _x, int _y);
   void Update(Object _target);
