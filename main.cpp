@@ -7,6 +7,7 @@
 // ***SOMETHING ELSE HERE I FORGET, LOOK IT UP AND FIX!!!!
 
 /* TO DO LIST:
+- baddies cannot occupy bird cell, but need to handle camping the nest
 - 1 tile item per cell? >>>> "cell.occupied"
 - # on stacked items
 - foo drawn over player is bad? idea: set occupancy state of cells?
@@ -96,10 +97,9 @@ int main(void)
   int y = nest.obj.y;
 
   std::vector<Player> player;
-  player.reserve(2);
   player.push_back(Player(x-1,y,0,1,0));
   player.push_back(Player(x+1,y,0,1,0));
-  player.push_back(Player(x,y,0,1,0));
+  //player.push_back(Player(x,y,0,1,0));
 
   arena.set(x,y,1);
   arena.set(x-1,y,1);
@@ -420,7 +420,6 @@ int main(void)
 
       if ( !game_win && !game_over )
         game_win = ( arena.fully_tiled() );
-
 
       for ( int i = 0; i < (signed)foo.size(); i++ )
         foo[i].Update(nest.obj);

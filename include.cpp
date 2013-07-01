@@ -164,19 +164,19 @@ void Foo::Update(Object _target)
 
   // MOVE:
   if ( count_since_moved > 120 ) //move every 2 seconds
-        {
-          int x_move = random_int(-1,1) + (_target.x-obj.x)/abs((_target.x-obj.x)+.1);//AI and +.1 hack for not div by 0
-          int y_move = random_int(-1,1) + (_target.y-obj.y)/abs((_target.y-obj.y)+.1);//AI and +.1 hack for not div by 0
-          if (  obj.x+x_move >= 0 &&  obj.x+x_move < grid_cells_x
-              &&  obj.y+y_move >= 0 &&  obj.y+y_move < grid_cells_y 
-              && ( abs(x_move) + abs(y_move) ) < 2 )
-          {
-             obj.x += x_move;
-             obj.y += y_move;
-             distance_last_moved = x_move + y_move;
-             count_since_moved = 0;
-          }
-        }
+  {
+    int x_move = random_int(-1,1) + (_target.x-obj.x)/abs((_target.x-obj.x)+.1);//AI and +.1 hack for not div by 0
+    int y_move = random_int(-1,1) + (_target.y-obj.y)/abs((_target.y-obj.y)+.1);//AI and +.1 hack for not div by 0
+    if (  obj.x+x_move >= 0 &&  obj.x+x_move < grid_cells_x
+        &&  obj.y+y_move >= 0 &&  obj.y+y_move < grid_cells_y 
+        && ( abs(x_move) + abs(y_move) ) < 2 )
+    {
+        obj.x += x_move;
+        obj.y += y_move;
+        distance_last_moved = x_move + y_move;
+        count_since_moved = 0;
+    }
+  }
 }
 
 Item::Item()
